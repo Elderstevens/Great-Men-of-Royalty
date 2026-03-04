@@ -36,6 +36,9 @@
       --card: #ffffff;
       --text-dark: #0b1f4a;
       --text-light: #ffffff;
+      /* Legacy tokens used elsewhere */
+      --text: var(--text-light);
+      --muted: rgba(255,255,255,.72);
       --muted-dark: #5a6a8a;
       --line: rgba(15,46,109,.12);
 
@@ -118,7 +121,9 @@
     }
 
     .dualMarks{ display:flex; align-items:center; gap: 10px; }
-    .dualMarks .mark{
+
+    /* Logo container (used in header) */
+    .mark{
       width: 54px;
       height: 54px;
       border-radius: 999px;
@@ -411,7 +416,7 @@
     <div class="wrap">
       <div class="nav">
         <div class="brand" aria-label="Great Men of Royalty">
-          <div class="mark" aria-hidden="true" style="padding:0; background:none; border:none; box-shadow:none;">
+          <div class="mark" aria-hidden="true">
             <img class="markImg" src="great-men-of-royalty-logo.png" alt="Great Men of Royalty Logo" />
           </div>
           <div class="brandText">
