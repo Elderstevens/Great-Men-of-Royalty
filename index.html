@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Great Men of Royalty, Inc. | Mentorship • Leadership • Life Skills</title>
+  <meta name="description" content="Great Men of Royalty, Inc. mentors young boys and young men through leadership, life skills, etiquette, financial literacy, and community service." />
+
+  <!-- Favicon (place these files next to index.html) -->
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="favicon-16.png" sizes="16x16">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <!--
+    HOW TO USE THIS FILE
+    1) Save as: index.html
+    2) Replace the placeholder contact info in the Contact section.
+    3) Swap the images (search for IMG_SWAP) with your real program photos.
+    4) If you have a logo, replace the crown emoji with an <img> tag.
+  -->
+
+  <style>
+    /* Sister-site style fonts (Cinzel + Roboto) */
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,700&display=swap');
+    :root{
+      /* PRIMARY BRAND COLORS – pulled from Great Men logo */
+      --royal-blue: #0f2e6d;
+      --royal-blue-deep: #0b1f4a;
+      --royal-blue-light: #173d8f;
+      --gold: #d4af37;
+      --gold-soft: #e6c766;
+
+      --bg: var(--royal-blue);
+      --section-light: #f4f6fb;
+      --card: #ffffff;
+      --text-dark: #0b1f4a;
+      --text-light: #ffffff;
+      --muted-dark: #5a6a8a;
+      --line: rgba(15,46,109,.12);
+
+      --shadow: 0 20px 60px rgba(0,0,0,.15);
+      --radius: 18px;
+      --max: 1120px;
+    }
+
+    *{ box-sizing: border-box; }
+    html,body{
+      margin:0;
+      font-family: 'Roboto', ui-sans-serif, system-ui, -apple-system, Segoe UI, Arial;
+      color: var(--text-dark);
+      background: var(--royal-blue);
+      line-height:1.6;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 18px; }
+
+    /* Nav */
+    header{
+      position: sticky;
+      top:0;
+      z-index: 50;
+      background: rgba(20,20,20,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: none;
+    }
+    /* Thin gold divider line under header */
+    header::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      height: 1px;
+      background: linear-gradient(90deg,
+        rgba(212,175,55,0),
+        rgba(212,175,55,.85),
+        rgba(212,175,55,0)
+      );
+      opacity: .9;
+      pointer-events:none;
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 0;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: .4px;
+      text-align:left;
+      min-width: 260px;
+    }
+
+    .brandText{ display:flex; flex-direction:column; line-height:1.15; }
+    .brandTitle{
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--text-light);
+      text-transform: uppercase;
+    }
+    .brandSubtitle{
+      font-weight: 400;
+      color: rgba(255,255,255,.78);
+      font-size: 12.5px;
+      margin-top: 3px;
+      letter-spacing: .6px;
+    }
+
+    .dualMarks{ display:flex; align-items:center; gap: 10px; }
+    .dualMarks .mark{
+      width: 54px;
+      height: 54px;
+      border-radius: 999px;
+      display:grid; place-items:center;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(212,175,55,.35);
+      box-shadow: 0 14px 40px rgba(0,0,0,.35);
+      overflow:hidden;
+      padding: 8px;
+      position: relative;
+      isolation: isolate;
+    }
+
+    /* Subtle gold shimmer animation on logo */
+    .mark::after{
+      content:"";
+      position:absolute;
+      inset: -40% -60%;
+      background: linear-gradient(115deg,
+        rgba(212,175,55,0) 40%,
+        rgba(212,175,55,.35) 50%,
+        rgba(212,175,55,0) 60%
+      );
+      transform: translateX(-40%) rotate(8deg);
+      animation: shimmer 5.5s ease-in-out infinite;
+      mix-blend-mode: screen;
+      opacity: .55;
+      z-index: 1;
+      pointer-events:none;
+    }
+    .markImg{ position: relative; z-index: 2; }
+
+    @keyframes shimmer{
+      0%{ transform: translateX(-55%) rotate(8deg); opacity: .15; }
+      35%{ opacity: .55; }
+      60%{ opacity: .25; }
+      100%{ transform: translateX(55%) rotate(8deg); opacity: .15; }
+    }
+    .brand small{ display:block; font-weight: 600; color: var(--muted); margin-top: -2px; }
+
+    .links{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 22px;
+      flex-wrap: wrap;
+      margin: 0 auto;
+    }
+    .links a{
+      font-family: 'Cinzel', serif;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: rgba(255,255,255,.82);
+      font-weight: 600;
+      font-size: 13px;
+      padding: 10px 6px;
+      border-radius: 0;
+    }
+    .links a:hover{
+      color: #fff;
+      text-decoration:none;
+    }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight: 750;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    .btn:hover{ background: rgba(255,255,255,.10); text-decoration:none; }
+    .btn.gold{
+      background: linear-gradient(135deg, rgba(212,175,55,.28), rgba(31,79,255,.18));
+      border-color: rgba(212,175,55,.30);
+    }
+
+    /* Luxury entrance animation (page load) */
+    body:not(.loaded) header .brand,
+    body:not(.loaded) header .btn,
+    body:not(.loaded) header .links{
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    body:not(.loaded) .heroCopy{
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    body:not(.loaded) .heroImg{
+      opacity: 0;
+      transform: translateY(18px) scale(.985);
+    }
+
+    body.loaded header .brand{
+      animation: riseIn .9s cubic-bezier(.2,.9,.2,1) .05s both;
+    }
+    body.loaded header .links{
+      animation: riseIn .9s cubic-bezier(.2,.9,.2,1) .12s both;
+    }
+    body.loaded header .btn{
+      animation: riseIn .9s cubic-bezier(.2,.9,.2,1) .18s both;
+    }
+    body.loaded .heroCopy{
+      animation: heroIn 1.05s cubic-bezier(.2,.9,.2,1) .18s both;
+    }
+    body.loaded .heroImg{
+      animation: heroIn 1.05s cubic-bezier(.2,.9,.2,1) .28s both;
+    }
+
+    @keyframes riseIn{
+      from{ opacity: 0; transform: translateY(-10px); filter: blur(2px); }
+      to{ opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+    @keyframes heroIn{
+      from{ opacity: 0; transform: translateY(18px) scale(.985); filter: blur(3px); }
+      to{ opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    }
+
+    /* Hero (Sister-site layout) */
+    .hero{
+      padding: 64px 0;
+      background: var(--royal-blue);
+      color: var(--text-light);
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 420px 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .heroLeft{ display:flex; align-items:center; justify-content:center; }
+    .heroLogoXL{
+      width: min(360px, 78vw);
+      aspect-ratio: 1 / 1;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 3px solid rgba(212,175,55,.75);
+      box-shadow: 0 26px 80px rgba(0,0,0,.45);
+      display:grid;
+      place-items:center;
+      padding: 22px;
+    }
+    .heroLogoXL img{ width: 100%; height: 100%; object-fit: contain; border-radius: 999px; }
+
+    .heroCopy{ padding: 0; }
+
+    h1{
+      font-family: 'Cinzel', serif;
+      margin: 0 0 14px;
+      font-size: clamp(28px, 3.4vw, 46px);
+      line-height:1.15;
+      letter-spacing: .6px;
+    }
+    .lead{ color: rgba(255,255,255,.86); font-size: 16px; max-width: 72ch; }
+
+    .heroTextBlock{
+      margin-top: 18px;
+      color: rgba(255,255,255,.88);
+      font-size: 16px;
+      line-height: 1.8;
+      max-width: 80ch;
+    }
+
+    .statRow{ display:none; }
+    .heroImg{ display:none; }
+    .heroBadge{ display:none; }
+
+    /* Sections */
+    section{
+      padding: 80px 0;
+      background: var(--section-light);
+    }
+
+    section:nth-of-type(even){
+      background: #ffffff;
+    }
+    .sectionTitle{
+      display:flex;
+      align-items:flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    h2{ margin:0; font-size: 22px; }
+    .sub{ color: var(--muted); font-size: 14px; max-width: 75ch; }
+
+    .grid3{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .grid2{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+    .card{
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .card:hover{
+      transform: translateY(-6px);
+      box-shadow: 0 25px 70px rgba(0,0,0,.12);
+    }
+    .card h3{
+      margin: 0 0 8px;
+      font-size: 17px;
+      color: var(--royal-blue);
+      font-weight: 700;
+    }
+    .card p{
+      margin: 0;
+      color: var(--muted-dark);
+      font-size: 14px;
+    }
+
+    .pillRow{ display:flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .pill{
+      font-size: 13px;
+      color: rgba(255,255,255,.86);
+      background: rgba(31,79,255,.14);
+      border: 1px solid rgba(31,79,255,.22);
+      padding: 7px 10px;
+      border-radius: 999px;
+    }
+    .pill.gold{ background: rgba(212,175,55,.14); border-color: rgba(212,175,55,.22); }
+
+    /* Gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+    }
+    .photo{
+      border-radius: var(--radius);
+      overflow:hidden;
+      border: 1px solid var(--line);
+      background: var(--card2);
+      box-shadow: var(--shadow);
+      min-height: 220px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Contact */
+    .contact{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 12px;
+      align-items: start;
+    }
+    label{ display:block; font-weight: 700; font-size: 13px; margin: 10px 0 6px; color: rgba(255,255,255,.86); }
+    input, textarea{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.20);
+      color: var(--text);
+      outline: none;
+    }
+    input:focus, textarea:focus{ border-color: rgba(212,175,55,.40); box-shadow: 0 0 0 4px rgba(212,175,55,.12); }
+    textarea{ min-height: 120px; resize: vertical; }
+    .note{ color: var(--muted); font-size: 13px; margin-top: 10px; }
+
+    footer{
+      padding: 40px 0;
+      border-top: 3px solid var(--gold);
+      background: var(--royal-blue-deep);
+      color: var(--text-light);
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .heroGrid{ grid-template-columns: 1fr; }
+      .grid3{ grid-template-columns: 1fr; }
+      .grid2{ grid-template-columns: 1fr; }
+      .gallery{ grid-template-columns: 1fr; }
+      .contact{ grid-template-columns: 1fr; }
+      .statRow{ grid-template-columns: 1fr; }
+      .links{ display:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand" aria-label="Great Men of Royalty">
+          <div class="mark" aria-hidden="true" style="padding:0; background:none; border:none; box-shadow:none;">
+            <img class="markImg" src="great-men-of-royalty-logo.png" alt="Great Men of Royalty Logo" />
+          </div>
+          <div class="brandText">
+            <div class="brandTitle">Great Men of Royalty, Inc.</div>
+            <div class="brandSubtitle">Mentoring • Leadership • Life Skills • Youth Development</div>
+          </div>
+        </div>
+
+        <nav class="links" aria-label="Primary">
+          <a href="#home">Home</a>
+          <a href="#about">Who Are We</a>
+          <a href="#programs">What We Do</a>
+          <a href="#workshops">Workshops</a>
+          <a href="#get-involved">You Can Help</a>
+          <a href="#partners">Our Partners</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <a class="btn gold" href="#get-involved">Get Involved</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="home">
+    <!-- HERO (Sister-site style: logo left, text right) -->
+    <section class="hero" aria-label="Hero">
+      <div class="wrap">
+        <div class="heroGrid">
+          <div class="heroLeft">
+            <div class="heroLogoXL" aria-label="Great Men of Royalty Logo">
+              <img src="great-men-of-royalty-logo.png" alt="Great Men of Royalty, Inc. Logo" />
+            </div>
+          </div>
+
+          <div class="heroCopy">
+            <h1>Great Men of Royalty, Inc.</h1>
+            <div class="heroTextBlock">
+              Great Men of Royalty, Inc. is a community-based organization that mentors young boys and young men through
+              leadership development, life skills, etiquette, financial literacy, and positive role models—at no cost to families.
+              <br /><br />
+              Our mission is to build confident, respectful, and purpose-driven young men by providing structured mentoring,
+              workshops, and community-based support that strengthens families and schools.
+            </div>
+
+            <div class="ctaRow" style="margin-top:18px;">
+              <a class="btn gold" href="#contact">Contact Us</a>
+              <a class="btn" href="#programs" style="border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.06);">What We Do</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="wm">
+      <div class="wrap">
+        <div class="sectionTitle">
+          <h2>About Great Men of Royalty</h2>
+          <div class="sub">A brotherhood of mentors committed to building the next generation.</div>
+        </div>
+
+        <div class="grid2">
+          <div class="card">
+            <h3>Vision</h3>
+            <p>
+              A community where every boy has access to strong male mentorship, positive identity, and the skills to become
+              a confident leader—at home, at school, and in life.
+            </p>
+            <div class="pillRow">
+              <span class="pill gold">Confidence</span>
+              <span class="pill">Character</span>
+              <span class="pill gold">Leadership</span>
+              <span class="pill">Community</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Mission</h3>
+            <p>
+              To mentor and empower young boys and young men through structured mentorship, leadership development,
+              life-skills training, etiquette, financial literacy, and community service—creating pathways to success and purpose.
+            </p>
+            <div class="pillRow">
+              <span class="pill">Mentoring</span>
+              <span class="pill gold">Life Skills</span>
+              <span class="pill">Education Support</span>
+              <span class="pill gold">Workforce Readiness</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMS -->
+    <section id="programs" class="wm">
+      <div class="wrap">
+        <div class="sectionTitle">
+          <h2>Programs</h2>
+          <div class="sub">Great Men of Royalty programs include our full shared program menu (in partnership with Great Women of Royalty) for men, boys, youth, and families—delivered during the school day, after-school, evenings, weekends, and summer.</div>
+        </div>
+
+        <div class="grid3">
+          <div class="card">
+            <h3>Royalty Mentoring (1:1 & Circles)</h3>
+            <p>Positive male mentorship, accountability, and guidance for boys and young men.</p>
+          </div>
+          <div class="card">
+            <h3>Leadership Development</h3>
+            <p>Confidence, communication, goal-setting, discipline, and decision-making.</p>
+          </div>
+          <div class="card">
+            <h3>Etiquette & Social Skills</h3>
+            <p>Respect, manners, introductions, dining etiquette, and professional presence.</p>
+          </div>
+
+          <div class="card">
+            <h3>Financial Literacy</h3>
+            <p>Budgeting, saving, banking basics, earning, credit awareness, and smart choices.</p>
+          </div>
+          <div class="card">
+            <h3>Career Readiness & Workforce Prep</h3>
+            <p>Resume basics, interview skills, workplace expectations, and career exploration.</p>
+          </div>
+          <div class="card">
+            <h3>Entrepreneurship & Business Basics</h3>
+            <p>Idea-to-action workshops, youth entrepreneurship challenges, and guest speakers.</p>
+          </div>
+
+          <div class="card">
+            <h3>Academic Support & School Engagement</h3>
+            <p>Motivation, attendance encouragement, tutoring referrals, and school partnership support.</p>
+          </div>
+          <div class="card">
+            <h3>Healthy Relationships & Conflict Resolution</h3>
+            <p>Communication skills, peer pressure tools, anger management, and healthy boundaries.</p>
+          </div>
+          <div class="card">
+            <h3>Health, Wellness & Self-Care</h3>
+            <p>Mental wellness conversations, self-esteem building, and healthy routines.</p>
+          </div>
+
+          <div class="card">
+            <h3>Community Service Projects</h3>
+            <p>Service activities that build pride, teamwork, responsibility, and leadership in action.</p>
+          </div>
+          <div class="card">
+            <h3>Family Engagement & Parent Support</h3>
+            <p>Parent sessions, family connection events, and supportive resources.</p>
+          </div>
+          <div class="card">
+            <h3>Youth Recognition & Awards</h3>
+            <p>Celebrations that honor youth achievement, growth, leadership, and community impact.</p>
+          </div>
+
+          <div class="card">
+            <h3>Life Skills for Teens & Young Adults</h3>
+            <p>Adulting basics: budgeting, planning, communication, time management, and independence.</p>
+          </div>
+          <div class="card">
+            <h3>Special Events & Enrichment</h3>
+            <p>Workshops, guest speakers, leadership dinners, and positive community experiences.</p>
+          </div>
+          <div class="card">
+            <h3>Referral & Support Navigation</h3>
+            <p>Connections to community resources, counseling supports, and partner services when needed.</p>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <h3>Shared Program Menu (Great Women & Great Men of Royalty)</h3>
+          <p>
+            The programs above reflect the full shared approach used across Great Women of Royalty and Great Men of Royalty—customized by age group and audience (women, men, youth, and families).
+            If you want, we can add a dedicated page section that lists your exact program titles and schedules for each quarter.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPACT -->
+    <section id="impact" class="wm">
+      <div class="wrap">
+        <div class="sectionTitle">
+          <h2>What We Build</h2>
+          <div class="sub">Replace the sample impact statements below with your real numbers as you track outcomes.</div>
+        </div>
+
+        <div class="grid3">
+          <div class="card">
+            <h3>Stronger School Engagement</h3>
+            <p>Improved attendance, motivation, and positive behavior through consistent mentorship and accountability.</p>
+          </div>
+          <div class="card">
+            <h3>Healthier Choices</h3>
+            <p>Better decision-making, conflict skills, and peer relationships—so young men can lead with maturity.</p>
+          </div>
+          <div class="card">
+            <h3>Future Readiness</h3>
+            <p>Job readiness, confidence, and goal-setting so youth can build a plan—and follow it.</p>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <h3>Signature Values</h3>
+          <p>
+            Respect • Responsibility • Integrity • Service • Excellence • Brotherhood
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <div class="wrap">
+        <div class="sectionTitle">
+          <h2>Gallery</h2>
+          <div class="sub">Free, real-life-style images that represent mentoring and youth development. Swap with your own photos anytime.</div>
+        </div>
+
+        <div class="gallery">
+          <div class="photo" style="background-image:
+            linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.55)),
+            url('https://images.pexels.com/photos/8653944/pexels-photo-8653944.jpeg?cs=srgb&dl=pexels-mikhail-nilov-8653944.jpg&fm=jpg'); /* IMG_SWAP */
+          " aria-label="Mentor session"></div>
+
+          <div class="photo" style="background-image:
+            linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.55)),
+            url('https://images.pexels.com/photos/8042009/pexels-photo-8042009.jpeg?cs=srgb&dl=pexels-cottonbro-8042009.jpg&fm=jpg'); /* IMG_SWAP */
+          " aria-label="Coaching and discipline"></div>
+
+          <div class="photo" style="background-image:
+            linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.55)),
+            url('https://images.pexels.com/photos/1617753/pexels-photo-1617753.jpeg?cs=srgb&dl=pexels-maumascaro-1617753.jpg&fm=jpg'); /* IMG_SWAP */
+          " aria-label="Guidance and support"></div>
+        </div>
+
+        <p class="note">
+          Tip: For the most authentic look, add your own program photos (with parent/guardian photo permission for minors).
+        </p>
+      </div>
+    </section>
+
+    <!-- GET INVOLVED -->
+    <section id="get-involved" class="wm">
+      <div class="wrap">
+        <div class="sectionTitle">
+          <h2>Get Involved</h2>
+          <div class="sub">We welcome mentors, partners, and supporters who believe in building strong young men.</div>
+        </div>
+
+        <div class="grid3">
+          <div class="card">
+            <h3>Become a Mentor</h3>
+            <p>Volunteer your time to guide, encourage, and help young men build confidence and direction.</p>
+            <div class="pillRow">
+              <span class="pill gold">Background check</span>
+              <span class="pill">Training & support</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Partner With Us</h3>
+            <p>Schools, churches, youth programs, and community groups can host sessions or co-sponsor activities.</p>
+            <div class="pillRow">
+              <span class="pill">School-based</span>
+              <span class="pill gold">Community-based</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Donate or Sponsor</h3>
+            <p>Support youth activities, materials, workshops, meals, and celebration events.</p>
+            <div class="pillRow">
+              <span class="pill gold">Monthly giving</span>
+              <span class="pill">Event sponsorship</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="wm">
+      <div class="wrap">
+        <div class="sectionTitle">
+          <h2>Contact</h2>
+          <div class="sub">Use the form below to request mentoring, partnerships, or speaking opportunities.</div>
+        </div>
+
+        <div class="contact">
+          <div class="card">
+            <!-- NOTE: This form uses an email link so it works without any backend. -->
+            <form onsubmit="return sendEmail(event)">
+              <div class="grid2">
+                <div>
+                  <label for="name">Name</label>
+                  <input id="name" name="name" placeholder="Your name" required />
+                </div>
+                <div>
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" placeholder="you@email.com" required />
+                </div>
+              </div>
+              <label for="topic">Topic</label>
+              <input id="topic" name="topic" placeholder="Mentoring request, school partnership, speaking, etc." required />
+
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us what you need and the best way to reach you." required></textarea>
+
+              <div class="ctaRow" style="margin-top:12px;">
+                <button class="btn gold" type="submit">Send Message</button>
+                <a class="btn" href="#get-involved">Volunteer / Sponsor</a>
+              </div>
+              <p class="note">This opens your email app with a pre-filled message.</p>
+            </form>
+          </div>
+
+          <div class="card">
+            <h3>Organization Info</h3>
+            <p style="margin-top:6px;">
+              <b>Great Men of Royalty, Inc.</b><br />
+              <span style="color: var(--muted);">Service Area:</span> Broome County / Binghamton area (customize)<br />
+              <span style="color: var(--muted);">Email:</span> greatmenofroyaltyinc@gmail.com<br />
+              <span style="color: var(--muted);">Phone:</span> 607-217-4454 (Office) • 607-422-8608 (Business Cell)<br />
+              <span style="color: var(--muted);">Address:</span> 72 Main Street, Binghamton, NY 13905 • Suite 3
+            </p>
+
+            <div class="pillRow" style="margin-top:10px;">
+              <span class="pill">Mentoring</span>
+              <span class="pill gold">Leadership</span>
+              <span class="pill">Life Skills</span>
+              <span class="pill gold">Community</span>
+            </div>
+
+            <p class="note" style="margin-top:12px;">
+              Add your social links here: Facebook • Instagram • YouTube • LinkedIn.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <footer>
+        <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <img src="great-men-of-royalty-logo.png" alt="Great Men of Royalty Logo" style="width:34px; height:34px; object-fit:contain;" />
+            <span>© <span id="year"></span> Great Men of Royalty, Inc. All rights reserved.</span>
+          </div>
+          <div>
+            <a href="#about">Vision & Mission</a> • <a href="#programs">Programs</a> • <a href="#contact">Contact</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    // Luxury entrance animation trigger
+    window.addEventListener('DOMContentLoaded', () => {
+      // allow first paint, then animate in
+      requestAnimationFrame(() => document.body.classList.add('loaded'));
+    });
+
+    // Update year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Email form handler (no backend required)
+    function sendEmail(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const topic = document.getElementById('topic').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      // IMPORTANT: Replace this email address with your real org email.
+      const to = 'greatmenofroyaltyinc@gmail.com';
+
+      const subject = encodeURIComponent(`[Great Men of Royalty] ${topic}`);
+      const body = encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+      );
+
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+      return false;
+    }
+  </script>
+</body>
+</html>
