@@ -705,30 +705,17 @@
 
         <div class="contact">
           <div class="card">
-            <!-- NOTE: This form uses an email link so it works without any backend. -->
-            <form onsubmit="return sendEmail(event)">
-              <div class="grid2">
-                <div>
-                  <label for="name">Name</label>
-                  <input id="name" name="name" placeholder="Your name" required />
-                </div>
-                <div>
-                  <label for="email">Email</label>
-                  <input id="email" name="email" type="email" placeholder="you@email.com" required />
-                </div>
-              </div>
-              <label for="topic">Topic</label>
-              <input id="topic" name="topic" placeholder="Mentoring request, school partnership, speaking, etc." required />
-
-              <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="Tell us what you need and the best way to reach you." required></textarea>
-
-              <div class="ctaRow" style="margin-top:12px;">
-                <button class="btn gold" type="submit">Send Message</button>
-                <a class="btn" href="#get-involved">Volunteer / Sponsor</a>
-              </div>
-              <p class="note">This opens your email app with a pre-filled message.</p>
-            </form>
+            <!-- Google Form Embed -->
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScci77ee6Xrwxlhq0rnIxu6ngFIags_b7PiSC4-YkToANPbVQ/viewform?embedded=true"
+              width="100%"
+              height="1812"
+              frameborder="0"
+              marginheight="0"
+              marginwidth="0"
+              style="border-radius:14px; background:#fff;">
+              Loading…
+            </iframe>
+            <p class="note">Form submissions are sent directly to our inbox.</p>
           </div>
 
           <div class="card">
