@@ -830,8 +830,9 @@
       requestAnimationFrame(() => document.body.classList.add('loaded'));
     });
 
-    // Update year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // Update year (guarded so JS never breaks)
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 
     // Contact modal controls
     function openContactModal(){
