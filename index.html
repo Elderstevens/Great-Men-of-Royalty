@@ -438,6 +438,9 @@
     .modalBody{ flex: 1; min-height: 0; padding: 14px; }
     .modalBody iframe{ width: 100%; height: 100%; border: 0; }
 
+    /* Prevent hover-lift jitter behind modal */
+    body.modalOpen .card:hover{ transform:none; }
+
     @media (max-width: 980px){
       .modal.isOpen{ padding: 10px; }
       .modalCard{ height: 94vh; }
@@ -845,12 +848,18 @@
     function openContactModal(){
       const modal = document.getElementById('contactModal');
       if(!modal) return;
+      // lock scroll without layout shift
+      const y = window.scrollY || document.documentElement.scrollTop;
+      document.body.dataset.scrollY = String(y);
+      document.body.classList.add('modalOpen');
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${y}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.width = '100%';
+
       modal.classList.add('isOpen');
       modal.setAttribute('aria-hidden','false');
-      // prevent background scroll + layout shift
-      const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
-      document.body.style.overflow = 'hidden';
-      if (scrollBarWidth > 0) document.body.style.paddingRight = scrollBarWidth + 'px';
     }
 
     function closeContactModal(){
@@ -858,8 +867,16 @@
       if(!modal) return;
       modal.classList.remove('isOpen');
       modal.setAttribute('aria-hidden','true');
-      document.body.style.overflow = '';
-      document.body.style.paddingRight = '';
+
+      // restore scroll
+      const y = parseInt(document.body.dataset.scrollY || '0', 10);
+      document.body.classList.remove('modalOpen');
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      window.scrollTo(0, y);
     }
 
     // Close on Escape
