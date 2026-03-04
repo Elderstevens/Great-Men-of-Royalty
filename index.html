@@ -439,7 +439,20 @@
     .modalBody iframe{ width: 100%; height: 100%; border: 0; }
 
     /* Prevent hover-lift jitter behind modal */
-    body.modalOpen .card:hover{ transform:none; }
+    body.modalOpen .card,
+    body.modalOpen .card:hover{
+      transform:none !important;
+      transition:none !important;
+    }
+    body.modalOpen main,
+    body.modalOpen header{
+      pointer-events:none;
+    }
+    /* Keep modal interactive */
+    #contactModal,
+    #contactModal *{
+      pointer-events:auto;
+    }
 
     @media (max-width: 980px){
       .modal.isOpen{ padding: 10px; }
@@ -848,15 +861,12 @@
     function openContactModal(){
       const modal = document.getElementById('contactModal');
       if(!modal) return;
-      // lock scroll without layout shift
-      const y = window.scrollY || document.documentElement.scrollTop;
-      document.body.dataset.scrollY = String(y);
+
+      // Lock background scroll without layout shift
+      const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.classList.add('modalOpen');
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${y}px`;
-      document.body.style.left = '0';
-      document.body.style.right = '0';
-      document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
+      if (scrollBarWidth > 0) document.body.style.paddingRight = scrollBarWidth + 'px';
 
       modal.classList.add('isOpen');
       modal.setAttribute('aria-hidden','false');
@@ -865,18 +875,13 @@
     function closeContactModal(){
       const modal = document.getElementById('contactModal');
       if(!modal) return;
+
       modal.classList.remove('isOpen');
       modal.setAttribute('aria-hidden','true');
 
-      // restore scroll
-      const y = parseInt(document.body.dataset.scrollY || '0', 10);
       document.body.classList.remove('modalOpen');
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.left = '';
-      document.body.style.right = '';
-      document.body.style.width = '';
-      window.scrollTo(0, y);
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
     }
 
     // Close on Escape
