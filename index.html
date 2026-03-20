@@ -751,19 +751,36 @@
 
         <div class="contact">
           <div class="card">
-            <!-- Inline Google Form (stable, no modal) -->
-            <div class="formWrap">
-              <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScci77ee6Xrwxlhq0rnIxu6ngFIags_b7PiSC4-YkToANPbVQ/viewform?embedded=true"
-                width="100%"
-                height="900"
-                frameborder="0"
-                marginheight="0"
-                marginwidth="0"
-                style="border-radius:14px; background:#fff;">
-                Loading…
-              </iframe>
-            </div>
+            <!-- Modal Google Form Trigger -->
+            <button class="btn gold" type="button" onclick="openContactModal()">Open Contact Form</button>
             <p class="note">Form submissions are sent directly to our inbox.</p>
+
+            <!-- Modal (hidden by default) -->
+            <div id="contactModal" class="modal" aria-hidden="true" aria-labelledby="contactModalTitle" role="dialog">
+              <div class="modalOverlay" onclick="closeContactModal()"></div>
+              <div class="modalCard" role="document">
+                <div class="modalHeader">
+                  <div>
+                    <div id="contactModalTitle" class="modalTitle">Contact Great Men of Royalty</div>
+                    <div class="modalSub">Submit your request and we will respond as soon as possible.</div>
+                  </div>
+                  <button class="modalClose" type="button" aria-label="Close" onclick="closeContactModal()">✕</button>
+                </div>
+
+                <div class="modalBody">
+                  <iframe
+                    src="https://docs.google.com/forms/d/e/1FAIpQLScci77ee6Xrwxlhq0rnIxu6ngFIags_b7PiSC4-YkToANPbVQ/viewform?embedded=true"
+                    width="100%"
+                    height="100%"
+                    frameborder="0"
+                    marginheight="0"
+                    marginwidth="0"
+                    style="border-radius:14px; background:#fff;">
+                    Loading…
+                  </iframe>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="card">
@@ -817,9 +834,35 @@
     const yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    // (Modal removed)
+    // Contact modal controls
+    function openContactModal(){
+      const modal = document.getElementById('contactModal');
+      if(!modal) return;
+
+      const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+      document.body.classList.add('modalOpen');
+      document.body.style.overflow = 'hidden';
+      if (scrollBarWidth > 0) document.body.style.paddingRight = scrollBarWidth + 'px';
+
+      modal.classList.add('isOpen');
+      modal.setAttribute('aria-hidden','false');
+    }
+
+    function closeContactModal(){
+      const modal = document.getElementById('contactModal');
+      if(!modal) return;
+
+      modal.classList.remove('isOpen');
+      modal.setAttribute('aria-hidden','true');
+
+      document.body.classList.remove('modalOpen');
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape') closeContactModal();
     });
   </script>
 </body>
 </html>
-
