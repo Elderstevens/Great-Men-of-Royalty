@@ -390,9 +390,72 @@
     textarea{ min-height: 120px; resize: vertical; }
     .note{ color: var(--muted); font-size: 13px; margin-top: 10px; }
 
-    /* Inline embedded form wrapper */
-    .formWrap{ border-radius: 14px; overflow:hidden; border: 1px solid rgba(15,46,109,.12); }
+    /* Modal (popup contact form) */
+    .modal{ position: fixed; inset: 0; display:none; z-index: 9999; }
+    /* Use flex centering to avoid jump/flicker */
+    .modal.isOpen{ display:flex; align-items:center; justify-content:center; padding: 14px; }
+    .modalOverlay{ position:absolute; inset:0; background: rgba(0,0,0,.62); backdrop-filter: blur(4px); }
+    .modalCard{
+      position: relative;
+      width: min(980px, 100%);
+      height: min(92vh, 820px);
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 30px 120px rgba(0,0,0,.55);
+      overflow:hidden;
+      border: 1px solid rgba(212,175,55,.35);
+      animation: modalIn .18s ease-out both;
+      display:flex;
+      flex-direction: column;
+      max-height: 92vh;
+    }
+    @keyframes modalIn{
+      from{ opacity: 0; }
+      to{ opacity: 1; }
+    }
+    .modalHeader{
+      display:flex;
+      align-items:flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      background: linear-gradient(90deg, rgba(15,46,109,.08), rgba(212,175,55,.10));
+      border-bottom: 1px solid rgba(15,46,109,.12);
+    }
+    .modalTitle{ font-family: 'Cinzel', serif; font-weight: 700; color: var(--royal-blue-deep); letter-spacing: .6px; }
+    .modalSub{ color: var(--muted-dark); font-size: 13px; margin-top: 2px; }
+    .modalClose{
+      border: 1px solid rgba(15,46,109,.18);
+      background: rgba(255,255,255,.75);
+      color: var(--royal-blue-deep);
+      border-radius: 10px;
+      padding: 8px 10px;
+      cursor: pointer;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .modalClose:hover{ background: #fff; }
+    .modalBody{ flex: 1; min-height: 0; padding: 14px; }
+    .modalBody iframe{ width: 100%; height: 100%; border: 0; }
 
+    /* Prevent hover-lift jitter behind modal */
+    body.modalOpen .card,
+    body.modalOpen .card:hover{
+      transform:none !important;
+      transition:none !important;
+    }
+    body.modalOpen main,
+    body.modalOpen header{
+      pointer-events:none;
+    }
+    /* Keep modal interactive */
+    #contactModal,
+    #contactModal *{
+      pointer-events:auto;
+    }
+
+    @media (max-width: 980px){
+      .modal.isOpen{ padding: 10px; }
       .modalCard{ height: 94vh; }
     }
 
@@ -768,7 +831,7 @@
                 </div>
 
                 <div class="modalBody">
-                  <iframe
+                  <iframe id="contactIframe"
                     src="https://docs.google.com/forms/d/e/1FAIpQLScci77ee6Xrwxlhq0rnIxu6ngFIags_b7PiSC4-YkToANPbVQ/viewform?embedded=true"
                     width="100%"
                     height="100%"
@@ -839,6 +902,7 @@
       const modal = document.getElementById('contactModal');
       if(!modal) return;
 
+      // Lock background scroll without layout shift
       const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.classList.add('modalOpen');
       document.body.style.overflow = 'hidden';
@@ -860,6 +924,7 @@
       document.body.style.paddingRight = '';
     }
 
+    // Close on Escape
     document.addEventListener('keydown', (e) => {
       if(e.key === 'Escape') closeContactModal();
     });
